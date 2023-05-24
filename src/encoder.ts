@@ -1,4 +1,4 @@
-import { CString, ptr } from "bun:ffi";
+import { CString } from "bun:ffi";
 import { symbols } from "./ffi";
 
 const utf8e: TextEncoder = new TextEncoder();
