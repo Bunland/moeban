@@ -4,6 +4,11 @@
 #include <stdbool.h>
 #include <jansson.h>
 
+void freeString(char *str)
+{
+  free(str);
+}
+
 bool validateDb(const char *db_name)
 {
   FILE *file = fopen(db_name, "r");
