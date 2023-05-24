@@ -7,7 +7,7 @@ Moeban JSON/NoSQL Database + ORM.
 [x] Validate Data Base function.\
 [x] Create write function.\
 [x] Create find function.\
-[x] Create findOne function
-
+[x] Create findOne function.\
+[x] Create removeOne function
 
 
