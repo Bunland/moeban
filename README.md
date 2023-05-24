@@ -13,7 +13,7 @@ Moeban JSON/NoSQL Database + ORM.
 
 ## FFI
 
-We are going to user `bash bun:ffi` to import the following functions from the binary.
+We are going to user `bun:ffi` to import the following functions from the binary.
 
 [x] Import: Create Data Base Function.\
 [x] Import: Validate Data Base function.\
