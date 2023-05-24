@@ -1,6 +1,6 @@
 # moeban
 
-Moeban JSON/NoSQL Database + ORM.
+Moeban JSON/NoSQL Database + ODM.
 
 ## C lang
 
