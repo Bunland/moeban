@@ -23,7 +23,8 @@ abstract class Moeban<T> {
         ptr(encode(object))
       )
     );
-    if (await result) return `Updated Model ${this.collectionName}`;
+    if (await result) return `Updated Model`;
+    // if (await result) return `Updated Model ${this.collectionName}`;
     throw new Error("Error updating model");
   }
 
