@@ -27,8 +27,21 @@ describe("Test write function", () => {
 });
 
 describe("Test find function", () => {
-  test("Shoult retun an array object", async () => {
+  test("Shoult return an array object", async () => {
     const result = await userModel.find();
     expect(Array.isArray(result)).toBe(true);
+  });
+});
+
+describe("Test findOne function", () => {
+  test("Should return and object", async () => {
+    const result = await userModel.findOne("_id", "1");
+    expect(typeof result).toBe("object");
+  });
+});
+
+describe("Test removeOne function", () => {
+  test("Should return true if the element was removed", async () => {
+    expect(await userModel.removeOne("_id", "4")).toBe(true);
   });
 });

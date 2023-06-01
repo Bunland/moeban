@@ -18,7 +18,7 @@ const user: User = {
   email: "luis@mail.com",
 };
 
-console.log(await userModel.write(JSON.stringify(user)));
-// console.log(await userModel.find());
+// console.log(await userModel.write(JSON.stringify(user)));
+console.log(await userModel.find())
 // console.log(await userModel.findOne("_id", "2"));
 // console.log(await userModel.removeOne("_id", "2"));

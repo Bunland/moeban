@@ -1,19 +1,19 @@
 {
   "users": [
     {
-      "_id": 4,
-      "name": "Lucas",
-      "email": "Lucas@mail.com"
+      "_id": 1,
+      "name": "arturo",
+      "email": "arturo@mail.com"
     },
     {
-      "_id": 4,
-      "name": "Lucas",
-      "email": "Lucas@mail.com"
+      "_id": 2,
+      "name": "Maria",
+      "email": "maria@mail.com"
     },
     {
-      "_id": 4,
-      "name": "Lucas",
-      "email": "Lucas@mail.com"
+      "_id": 3,
+      "name": "Susan",
+      "email": "susan@mail.com"
     }
   ]
 }

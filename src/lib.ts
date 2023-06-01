@@ -29,16 +29,59 @@ abstract class Moeban<T> {
   }
 
   public async find(): Promise<object[]> {
-    return Promise.resolve(
-      JSON.parse(
-        toString(
-          symbols.find(
-            ptr(encode(this.db_name)),
-            ptr(encode(this.collectionName))
-          )
-        )
-      )
+
+    const resultPtr = symbols.find(
+      ptr(encode(this.db_name)),
+      ptr(encode(this.collectionName))
     );
+
+
+    if (resultPtr.toString() === "err1") {
+      throw new Error(`The collection ${this.collectionName} was not found`);
+      // return;
+    } else  if (resultPtr.toString() === "err2") {
+      throw new Error(`The ${this.db_name} Database was not found.`);
+      // return;
+    } else {
+
+      
+    const resultStr: string = toString(resultPtr);
+      console.log(resultStr)
+    const resultObj = JSON.parse(resultStr);
+    return Promise.resolve(resultObj);
+    // return "lol"
+    }
+    
+  
+    // return Promise.resolve(
+    //   JSON.parse(
+    //     toString(
+    //       symbols.find(
+    //         ptr(encode(this.db_name)),
+    //         ptr(encode(this.collectionName))
+    //       )
+    //     )
+    //   )
+    // );
+
+    // const resultPtr = symbols.find(
+    //   ptr(encode(this.db_name)),
+    //   ptr(encode(this.collectionName))
+    // );
+
+    // if (resultPtr == "err1") {
+    //   // throw new Error(`The collection ${this.collectionName} was not found`);
+    //   return;
+    // }
+
+    // if (resultPtr == "err2") {
+    //   // throw new Error(`The ${this.db_name} Database was not found.`);
+    //   return;
+    // }
+
+    // const resultStr: string = toString(resultPtr);
+    // const resultObj = JSON.parse(resultStr);
+    // return Promise.resolve(resultObj);
   }
 
   public async findOne(

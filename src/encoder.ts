@@ -1,7 +1,10 @@
 import { CString } from "bun:ffi";
 import { symbols } from "./ffi";
 
+//@ts-ignore
 const utf8e: TextEncoder = new TextEncoder();
+
+
 const encode: (ptr: unknown) => Uint8Array = (ptr: unknown) =>
   utf8e.encode(ptr + "\0");
 
