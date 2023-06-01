@@ -18,7 +18,7 @@ const { symbols } = dlopen(location.pathname, {
   },
   find: {
     args: [FFIType.ptr, FFIType.ptr],
-    returns: FFIType.ptr | FFIType.cstring,
+    returns: FFIType.ptr,
   },
   findOne: {
     args: [FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr],

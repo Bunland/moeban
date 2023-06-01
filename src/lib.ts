@@ -1,4 +1,4 @@
-import { ptr } from "bun:ffi";
+import { ptr, CString } from "bun:ffi";
 import { symbols } from "./ffi";
 import { encode, toString } from "./encoder";
 
@@ -15,12 +15,13 @@ abstract class Moeban<T> {
     if (await result) return `The data base ${filename} was created`;
   }
 
-  public async write(object: string): Promise<string> {
+  public async write(object: object): Promise<string> {
+    const jsonString = JSON.stringify(object);
     let result = Promise.resolve(
       symbols.write(
         ptr(encode(this.db_name)),
         ptr(encode(this.collectionName)),
-        ptr(encode(object))
+        ptr(encode(jsonString))
       )
     );
     if (await result) return `Updated Model`;
@@ -28,60 +29,20 @@ abstract class Moeban<T> {
     throw new Error("Error updating model");
   }
 
-  public async find(): Promise<object[]> {
 
+  public async find(): Promise<object[] | Error> {
     const resultPtr = symbols.find(
       ptr(encode(this.db_name)),
       ptr(encode(this.collectionName))
     );
 
+    if (resultPtr === null || resultPtr === undefined) {
+      throw new Error(`The collection "${this.collectionName}" was not found`);
+    }
 
-    if (resultPtr.toString() === "err1") {
-      throw new Error(`The collection ${this.collectionName} was not found`);
-      // return;
-    } else  if (resultPtr.toString() === "err2") {
-      throw new Error(`The ${this.db_name} Database was not found.`);
-      // return;
-    } else {
-
-      
     const resultStr: string = toString(resultPtr);
-      console.log(resultStr)
     const resultObj = JSON.parse(resultStr);
     return Promise.resolve(resultObj);
-    // return "lol"
-    }
-    
-  
-    // return Promise.resolve(
-    //   JSON.parse(
-    //     toString(
-    //       symbols.find(
-    //         ptr(encode(this.db_name)),
-    //         ptr(encode(this.collectionName))
-    //       )
-    //     )
-    //   )
-    // );
-
-    // const resultPtr = symbols.find(
-    //   ptr(encode(this.db_name)),
-    //   ptr(encode(this.collectionName))
-    // );
-
-    // if (resultPtr == "err1") {
-    //   // throw new Error(`The collection ${this.collectionName} was not found`);
-    //   return;
-    // }
-
-    // if (resultPtr == "err2") {
-    //   // throw new Error(`The ${this.db_name} Database was not found.`);
-    //   return;
-    // }
-
-    // const resultStr: string = toString(resultPtr);
-    // const resultObj = JSON.parse(resultStr);
-    // return Promise.resolve(resultObj);
   }
 
   public async findOne(

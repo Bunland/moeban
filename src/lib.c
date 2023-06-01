@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -92,16 +91,14 @@ char *find(const char *db_name, const char *collection)
   root = json_load_file(db_name, 0, &error);
   if (!root || !json_is_object(root))
   {
-    // return NULL;
-    return "err2";
+    return NULL;
   }
 
   arr = json_object_get(root, collection);
   if (!json_is_array(arr))
   {
     json_decref(root);
-    // return NULL;
-    return "err1";
+    return NULL;
   }
 
   char *objectsJSON = json_dumps(arr, JSON_INDENT(2));
@@ -250,7 +247,7 @@ int main()
 {
   // printf("%d\n", createDb("example.json"));
   // printf("%d\n", write("example.json", "users", "{\"key\": \"value\"}"));
-  // printf("%s\n", find("examplew.json", "userss"));
+  // printf("%s\n", find("example.json", "users"));
   // printf("%s\n", findOne("example.json", "users", "id", "1"));
   // printf("%d\n", removeOne("example.json", "users", "id", "1"));
   return 0;

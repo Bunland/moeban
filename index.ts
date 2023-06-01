@@ -13,12 +13,12 @@ class UserModel extends Moeban<User> {
 const userModel = new UserModel("example.json");
 
 const user: User = {
-  _id: 5,
+  _id: 1,
   name: "Luis",
   email: "luis@mail.com",
 };
 
-// console.log(await userModel.write(JSON.stringify(user)));
-console.log(await userModel.find())
-// console.log(await userModel.findOne("_id", "2"));
-// console.log(await userModel.removeOne("_id", "2"));
+await userModel.write(user);
+await userModel.find();
+await userModel.findOne("_id", "1");
+await userModel.removeOne("_id", "1");
