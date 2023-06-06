@@ -5,7 +5,7 @@ Moeban JSON/NoSQL Database + ODM.
 ## Download
 
 ```bash
-git clone https://github.com/vitalspace/moeban.git
+bun i @bunland/moeban
 ```
 
 ## Usage
