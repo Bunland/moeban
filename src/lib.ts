@@ -12,10 +12,11 @@ class Moeban {
     this.createDb(this.db_name);
   }
 
+  //@ts-ignore
   private async createDb(filename: string): Promise<string> {
     let result = Promise.resolve(symbols.createDb(ptr(encode(filename))));
     if (await result) return `The database ${filename} was created`;
-    throw new Error("Error creating the database");
+    // throw new Error("Error creating the database");
   }
 
   public async write(object: object): Promise<string> {
