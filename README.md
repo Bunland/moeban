@@ -11,7 +11,7 @@ git clone https://github.com/vitalspace/moeban.git
 ## Usage
 
 ```coffeescript
-import { Moeban } from "./src/lib";
+import { Moeban } from "@bunland/moeban";
 
 interface User {
   _id: string | number;
