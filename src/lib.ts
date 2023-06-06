@@ -2,43 +2,48 @@ import { ptr } from "bun:ffi";
 import { symbols } from "./ffi";
 import { encode, toString } from "./encoder";
 
-abstract class Moeban<T> {
+class Moeban {
   private db_name: string;
-  protected abstract collectionName: string;
-  constructor(filename: string) {
-    this.db_name = filename;
+  protected modelName: string;
+
+  constructor(fileName: string, modelName: string) {
+    this.db_name = fileName;
+    this.modelName = modelName;
     this.createDb(this.db_name);
   }
-  //@ts-ignore
+
   private async createDb(filename: string): Promise<string> {
     let result = Promise.resolve(symbols.createDb(ptr(encode(filename))));
-    if (await result) return `The data base ${filename} was created`;
+    if (await result) return `The database ${filename} was created`;
+    throw new Error("Error creating the database");
   }
 
-  public async write(object: string): Promise<string> {
+  public async write(object: object): Promise<string> {
+    const jsonString = JSON.stringify(object);
     let result = Promise.resolve(
       symbols.write(
         ptr(encode(this.db_name)),
-        ptr(encode(this.collectionName)),
-        ptr(encode(object))
+        ptr(encode(this.modelName)),
+        ptr(encode(jsonString))
       )
     );
     if (await result) return `Updated Model`;
-    // if (await result) return `Updated Model ${this.collectionName}`;
     throw new Error("Error updating model");
   }
 
-  public async find(): Promise<object[]> {
-    return Promise.resolve(
-      JSON.parse(
-        toString(
-          symbols.find(
-            ptr(encode(this.db_name)),
-            ptr(encode(this.collectionName))
-          )
-        )
-      )
+  public async find(): Promise<object[] | Error> {
+    const resultPtr = symbols.find(
+      ptr(encode(this.db_name)),
+      ptr(encode(this.modelName))
     );
+
+    if (resultPtr === null || resultPtr === undefined) {
+      throw new Error(`The model "${this.modelName}" was not found`);
+    }
+
+    const resultStr: string = toString(resultPtr);
+    const resultObj = JSON.parse(resultStr);
+    return Promise.resolve(resultObj);
   }
 
   public async findOne(
@@ -47,7 +52,7 @@ abstract class Moeban<T> {
   ): Promise<object | Error> {
     const resultPtr = symbols.findOne(
       ptr(encode(this.db_name)),
-      ptr(encode(this.collectionName)),
+      ptr(encode(this.modelName)),
       ptr(encode(key)),
       ptr(encode(value))
     );
@@ -66,7 +71,7 @@ abstract class Moeban<T> {
     let result = Promise.resolve(
       symbols.removeOne(
         ptr(encode(this.db_name)),
-        ptr(encode(this.collectionName)),
+        ptr(encode(this.modelName)),
         ptr(encode(key)),
         ptr(encode(value))
       )
