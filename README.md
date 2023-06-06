@@ -2,30 +2,27 @@
 
 Moeban JSON/NoSQL Database + ODM.
 
-##  Download
+## Download
 
 ```bash
 git clone https://github.com/vitalspace/moeban.git
 ```
 
-## Usage 
+## Usage
 
 ```coffeescript
 import { Moeban } from "./src/lib";
-    
+
 interface User {
   _id: string | number;
   name: string;
   email: string;
 }
 
-class UserModel extends Moeban<User> {
-// initialize the collection with the name "users"
-  protected collectionName = "users";
-}
 // instance "UserModel" will receive as a parameter the name of the database in this case "example.json"
-const userModel = new UserModel("example.json");
-    
+// and the name of the collection
+const userModel = new Moeban("example.json", "users");
+
 // Methods
 
 const user: User = {
@@ -47,7 +44,7 @@ console.log(await userModel.findOne("_id", "3"));
 console.log(await userModel.removeOne("_id", "2"));
 
 
-// You can also handle errors with try catch blocks. 
+// You can also handle errors with try catch blocks.
 
 try {
   console.log(await userModel.write(user));
@@ -115,7 +112,7 @@ userModel.removeOne("_id", "2")
 bun test
 ```
 
-```coffeescript 
+```coffeescript
 bun test v0.6.5 (052df7d4)
 
 index.test.ts:
@@ -131,4 +128,3 @@ index.test.ts:
  8 expect() calls
 Ran 6 tests across 1 files. 6 total [24.00ms]
 ```
-
