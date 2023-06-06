@@ -4,11 +4,11 @@ import { encode, toString } from "./encoder";
 
 class Moeban {
   private db_name: string;
-  protected collectionName: string;
+  protected modelName: string;
 
-  constructor(fileName: string, collectionName: string) {
+  constructor(fileName: string, modelName: string) {
     this.db_name = fileName;
-    this.collectionName = collectionName;
+    this.modelName = modelName;
     this.createDb(this.db_name);
   }
 
@@ -23,7 +23,7 @@ class Moeban {
     let result = Promise.resolve(
       symbols.write(
         ptr(encode(this.db_name)),
-        ptr(encode(this.collectionName)),
+        ptr(encode(this.modelName)),
         ptr(encode(jsonString))
       )
     );
@@ -34,11 +34,11 @@ class Moeban {
   public async find(): Promise<object[] | Error> {
     const resultPtr = symbols.find(
       ptr(encode(this.db_name)),
-      ptr(encode(this.collectionName))
+      ptr(encode(this.modelName))
     );
 
     if (resultPtr === null || resultPtr === undefined) {
-      throw new Error(`The collection "${this.collectionName}" was not found`);
+      throw new Error(`The model "${this.modelName}" was not found`);
     }
 
     const resultStr: string = toString(resultPtr);
@@ -52,7 +52,7 @@ class Moeban {
   ): Promise<object | Error> {
     const resultPtr = symbols.findOne(
       ptr(encode(this.db_name)),
-      ptr(encode(this.collectionName)),
+      ptr(encode(this.modelName)),
       ptr(encode(key)),
       ptr(encode(value))
     );
@@ -71,7 +71,7 @@ class Moeban {
     let result = Promise.resolve(
       symbols.removeOne(
         ptr(encode(this.db_name)),
-        ptr(encode(this.collectionName)),
+        ptr(encode(this.modelName)),
         ptr(encode(key)),
         ptr(encode(value))
       )

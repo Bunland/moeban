@@ -20,7 +20,7 @@ interface User {
 }
 
 // instance "UserModel" will receive as a parameter the name of the database in this case "example.json"
-// and the name of the collection
+// and the name of the model
 const userModel = new Moeban("example.json", "users");
 
 // Methods
