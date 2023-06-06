@@ -5,12 +5,7 @@ interface User {
   name: string;
   email: string;
 }
-
-class UserModel extends Moeban<User> {
-  protected collectionName = "users";
-}
-
-const userModel = new UserModel("example.json");
+const userModel = new Moeban("example.json", "users");
 
 const user: User = {
   _id: 1,

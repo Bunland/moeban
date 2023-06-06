@@ -1,18 +1,21 @@
-import { ptr, CString } from "bun:ffi";
+import { ptr } from "bun:ffi";
 import { symbols } from "./ffi";
 import { encode, toString } from "./encoder";
 
-abstract class Moeban<T> {
+class Moeban {
   private db_name: string;
-  protected abstract collectionName: string;
-  constructor(filename: string) {
-    this.db_name = filename;
+  protected collectionName: string;
+
+  constructor(fileName: string, collectionName: string) {
+    this.db_name = fileName;
+    this.collectionName = collectionName;
     this.createDb(this.db_name);
   }
-  //@ts-ignore
+
   private async createDb(filename: string): Promise<string> {
     let result = Promise.resolve(symbols.createDb(ptr(encode(filename))));
-    if (await result) return `The data base ${filename} was created`;
+    if (await result) return `The database ${filename} was created`;
+    throw new Error("Error creating the database");
   }
 
   public async write(object: object): Promise<string> {
@@ -25,10 +28,8 @@ abstract class Moeban<T> {
       )
     );
     if (await result) return `Updated Model`;
-    // if (await result) return `Updated Model ${this.collectionName}`;
     throw new Error("Error updating model");
   }
-
 
   public async find(): Promise<object[] | Error> {
     const resultPtr = symbols.find(

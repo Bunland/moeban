@@ -1,4 +1,3 @@
-//@ts-ignore
 import { describe, expect, test } from "bun:test";
 import { Moeban } from "./src/lib";
 
@@ -8,11 +7,7 @@ interface User {
   email: string;
 }
 
-class UserModel extends Moeban<User> {
-  protected collectionName = "users";
-}
-
-const userModel = new UserModel("db_test.json");
+const userModel = new Moeban("db_test.json", "users");
 
 const user: User = {
   _id: 1,
