@@ -1,6 +1,6 @@
 {
   "name": "@bunland/moeban",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Moeban JSON/NoSQL Database + ODM.",
   "type": "module",
   "devDependencies": {
@@ -17,9 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/Bunland/moeban.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["Bunland", "NoSQL", "Bun", "Typescript", "ODM"],
+  "author": "Bunland",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Bunland/moeban/issues"
   },
