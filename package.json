@@ -1,8 +1,7 @@
 {
   "name": "@bunland/moeban",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Moeban JSON/NoSQL Database + ODM.",
-  "module": "src/lib.ts",
   "type": "module",
   "devDependencies": {
     "bun-types": "^0.5.0"
@@ -10,7 +9,7 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "main": "index.js",
+  "main": "src/lib.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
