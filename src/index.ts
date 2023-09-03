@@ -1,7 +1,16 @@
-const obj = {
-    id: 1,
-    name: "laura",
-    email: "example@emample.com"
-}
+import { Moeban } from "./database/service";
 
-console.log(JSON.stringify(obj));
+interface User {
+  _id: string | number;
+  name: string;
+  email: string;
+}
+const userModel = new Moeban("example.json", "users");
+
+const user: User = {
+  _id: 1,
+  name: "Luis",
+  email: "luis@mail.com",
+};
+
+await userModel.write(user);

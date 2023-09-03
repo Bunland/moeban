@@ -1,27 +1,24 @@
 {
   "name": "@bunland/moeban",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Moeban JSON/NoSQL Database + ODM.",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "^0.5.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "main": "src/lib.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "Bunland",
+  "license": "MIT",
+  "homepage": "https://github.com/Bunland/moeban#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bunland/moeban.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["Bunland", "NoSQL", "Bun", "Typescript", "ODM"],
+  "main": "src/database/database_service.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "0.8.1"
+  },
+  "peerDependencies": {
+    "typescript": "5.2.2"
+  },
   "bugs": {
     "url": "https://github.com/Bunland/moeban/issues"
-  },
-  "homepage": "https://github.com/Bunland/moeban#readme"
+  }
 }
