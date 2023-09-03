@@ -1,6 +1,6 @@
 import { ptr } from "bun:ffi";
-import { symbols } from "../ffi/wrapper";
-import { encode, toString } from "../ffi/helpers";
+import { symbols } from "../ffi/ffi";
+import { encode, toString } from "../ffi/encoerder";
 
 class Moeban {
     private db_name: string;
