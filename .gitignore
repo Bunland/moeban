@@ -18,8 +18,11 @@ node_modules/
 .npm/
 .cache/
 
+#VSCODE
+.vscode
+
 # Ignore build and generated output directories
-.dist/
+dist/
 
 # Ignore other tools and cache files
 .env
