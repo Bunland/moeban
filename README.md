@@ -8,7 +8,7 @@ Node.js.
 You can install Moeban using npm:
 
 ```bash
-npm install @bunland/moeban
+bun install @bunland/moeban
 ```
 
 ## Getting Started
