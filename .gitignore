@@ -13,6 +13,7 @@ coverage/
 
 # Ignore dependency directories
 node_modules/
+build/
 
 # Ignore optional cache directories
 .npm/
