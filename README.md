@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-  <img src="[./icon/icon128.png](https://github.com/Bunland/moeban/assets/29004070/372ced48-4be8-48c3-885e-e690916a7129)" alt="moeban" />
+  <img src="https://github.com/Bunland/moeban/assets/29004070/372ced48-4be8-48c3-885e-e690916a7129" alt="moeban" />
 </p>
 
 # Moeban
