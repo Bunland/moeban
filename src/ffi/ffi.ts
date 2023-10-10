@@ -1,9 +1,18 @@
 import { dlopen, suffix, FFIType } from "bun:ffi";
 
-const filename: string = `../libs/lib.${suffix}`;
-const location: URL = new URL(filename, import.meta.url);
+const { platform, arch } = process;
 
-const { symbols } = dlopen(location.pathname, {
+let filename: string;
+
+if (platform === "linux" && arch === "x64") {
+    filename = `../libs/lib.${suffix}`;
+} else {
+    filename = `../libs/lib.${suffix}`;
+}
+
+const { pathname } = new URL(filename, import.meta.url);
+
+const { symbols } = dlopen(pathname, {
     freeString: {
         args: [FFIType.ptr],
         returns: FFIType.void,
