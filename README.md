@@ -1,6 +1,7 @@
 <p align="center" width="100%">
-![1d33144ad1df490da6dd15be058477ac](https://github.com/Bunland/moeban/assets/29004070/372ced48-4be8-48c3-885e-e690916a7129)
+  <img src="[./icon/icon128.png](https://github.com/Bunland/moeban/assets/29004070/372ced48-4be8-48c3-885e-e690916a7129)" alt="moeban" />
 </p>
+
 # Moeban
 
 Moeban is a JSON/NoSQL Database + ODM (Object-Document Mapper) library for
