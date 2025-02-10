@@ -5,7 +5,7 @@
 # Moeban
 
 Moeban is a JSON/NoSQL Database + ODM (Object-Document Mapper) library for
-Node.js.
+Bun.js.
 
 ## Installation
 
